@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | blog</title>
+  <title>UDP | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="UDP 是什么 User Datagram Protocol 一种用户数据报协议，又称用户数据报文协议 是一种简单的面向数据报的传输层协议，正是规范为 RFC 768 非连接协议">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UDP">
+<meta property="og:url" content="http://yoursite.com/2019/05/14/UDP/index.html">
 <meta property="og:site_name" content="blog">
+<meta property="og:description" content="UDP 是什么 User Datagram Protocol 一种用户数据报协议，又称用户数据报文协议 是一种简单的面向数据报的传输层协议，正是规范为 RFC 768 非连接协议">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-14T00:03:28.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blog">
+<meta name="twitter:title" content="UDP">
+<meta name="twitter:description" content="UDP 是什么 User Datagram Protocol 一种用户数据报协议，又称用户数据报文协议 是一种简单的面向数据报的传输层协议，正是规范为 RFC 768 非连接协议">
   
     <link rel="alternative" href="/atom.xml" title="blog" type="application/atom+xml">
   
@@ -137,36 +142,216 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-UDP" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UDP
+    </h1>
+  
+
+        
+        <a href="/2019/05/14/UDP/" class="archive-article-date">
+  	<time datetime="2019-05-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UDP-是什么"><a href="#UDP-是什么" class="headerlink" title="UDP 是什么"></a>UDP 是什么</h1><ul>
+<li>User Datagram Protocol</li>
+<li>一种用户数据报协议，又称用户数据报文协议</li>
+<li>是一种简单的面向数据报的传输层协议，正是规范为 RFC 768</li>
+<li><strong>非连接协议</strong></li>
+</ul>
+<a id="more"></a>
+<h2 id="为什么不可靠"><a href="#为什么不可靠" class="headerlink" title="为什么不可靠"></a>为什么不可靠</h2><ul>
+<li>一旦把应用程序发给网络层的数据发出去，就不保留数据备份</li>
+<li>UDP 在 IP 数据报的头部仅仅加入复用和数据校验（字段）</li>
+<li>发送端生产数据，接收端从网络中抓取数据</li>
+<li>结构简单、无校验、速度快、容易丢包、可广播</li>
+</ul>
+<h2 id="UDP-能做什么"><a href="#UDP-能做什么" class="headerlink" title="UDP 能做什么"></a>UDP 能做什么</h2><ul>
+<li>DNS、TFTP、SNMP</li>
+<li>视频、音频、普通数据（无关紧要数据）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Bit#</th>
+<th>0 7 8 15</th>
+<th>16 2324 31</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Source Port</td>
+<td>destination Port</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Length</td>
+<td>Header and Data Checksum</td>
+</tr>
+</tbody>
+</table>
+<h2 id="UDP-包最大长度"><a href="#UDP-包最大长度" class="headerlink" title="UDP 包最大长度"></a>UDP 包最大长度</h2><ul>
+<li>16 位-&gt;2 字节 存储长度信息</li>
+<li>2^16-1= 64K-1=65536-1=65535</li>
+<li>自身协议占用：32+32 位=64 位=8 字节</li>
+<li>65535-8 =6550 byte</li>
+</ul>
+<h1 id="UDP-核心-API-讲解"><a href="#UDP-核心-API-讲解" class="headerlink" title="UDP 核心 API 讲解"></a>UDP 核心 API 讲解</h1><h2 id="API-DatagramSocket"><a href="#API-DatagramSocket" class="headerlink" title="API-DatagramSocket"></a>API-DatagramSocket</h2><ul>
+<li>用于接受和发送 UDP 的类</li>
+<li>负责发送某一个 UDP 包，或者接受 UDP 包</li>
+<li>不同于 TCP，UDP 并没有合并到 Socket API 中</li>
+<li>DatagramSocket（）创建简单实例，不指定端口和 IP</li>
+<li>DatagramSocket（int port）创建监听固定端口的实例</li>
+<li>DatagramSocket（int port，InetAddress localAddr）创建固定端口指定 IP 的实例</li>
+<li>receive（DatagramPacket d）：接收</li>
+<li>send（DatagramPacket d）：发送</li>
+<li>setSoTimeout（int timeout）：设置超时，毫秒</li>
+<li>close（）：关闭、释放资源</li>
+</ul>
+<h2 id="API-DaragramPacket"><a href="#API-DaragramPacket" class="headerlink" title="API-DaragramPacket"></a>API-DaragramPacket</h2><ul>
+<li>用于处理报文</li>
+<li>将 byte 数组、目标地址、目标端口等数据包装成报文或者将报文拆卸成 byte 数组</li>
+<li>是 UDP 的发送实体也是接受实体</li>
+<li>DatagramPacket(byte[] buf,int offset,int length,InetAddress address,int port)<br>&#8195; 前 3 个参数指定 buf 的使用区间<br>&#8195; 后面两个指定目标机器地址与端口</li>
+<li>SocketAddress 相当于 InetAddress+Port</li>
+<li>setData(byte[] buf,int offset,int length)</li>
+<li>setData(byte[] buf)</li>
+<li>setLength(int Length)</li>
+<li>getData()、getOffset()、getLength()</li>
+</ul>
+<h2 id="API-DatagramPacket"><a href="#API-DatagramPacket" class="headerlink" title="API-DatagramPacket"></a>API-DatagramPacket</h2><ul>
+<li>setAddress(InetAddress iaddr)、setPort(int port)</li>
+<li>getAddress(),getPort()</li>
+<li>setSocketAddress(SocketAddress address)</li>
+<li>getSocketAddress()</li>
+</ul>
+<h2 id="UDP-单播、广播、多播"><a href="#UDP-单播、广播、多播" class="headerlink" title="UDP 单播、广播、多播"></a>UDP 单播、广播、多播</h2><h3 id="IP-地址类别"><a href="#IP-地址类别" class="headerlink" title="IP 地址类别"></a>IP 地址类别</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th style="text-align:center">1^st^八位十进制范围</th>
+<th>1^st^八位字节高阶位</th>
+<th>网络/主机 ID（N=网络，H=主机）</th>
+<th>默认子网掩码</th>
+<th>网络数量</th>
+<th>每个网络的主机（可用地址）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align:center">1-126</td>
+<td>0</td>
+<td>N.H.H.H</td>
+<td>255.0.0.0</td>
+<td>126(2^7^-2)</td>
+<td>16.777.214(2^24^-2)</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align:center">126-191</td>
+<td>10</td>
+<td>N.N.H.H</td>
+<td>16382(2^14^-2)</td>
+<td>65.534(2^16^-2)</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align:center">192-223</td>
+<td>110</td>
+<td>N.N.N.H</td>
+<td>255.255.255.0</td>
+<td>2.097.150(2^21^-2)</td>
+<td>254(2^8^-2)</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align:center">224-239</td>
+<td>1110</td>
+<td>为多播预留</td>
+</tr>
+<tr>
+<td>E</td>
+<td style="text-align:center">240-254</td>
+<td>1111</td>
+<td>实验性的，用于研究</td>
+</tr>
+</tbody>
+</table>
+<h3 id="广播地址"><a href="#广播地址" class="headerlink" title="广播地址"></a>广播地址</h3><ul>
+<li>255.255.255.255 为受限广播地址</li>
+<li>c 网广播地址一般为：XXX.XXX.XXX.255(192.168.1.255)</li>
+<li>D 类 IP 地址为多播预留</li>
+</ul>
+<h3 id="广播地址运算"><a href="#广播地址运算" class="headerlink" title="广播地址运算"></a>广播地址运算</h3><ul>
+<li>IP：192.168.124.7</li>
+<li>子网掩码：255.255.255.0</li>
+<li>网络地址：192.168.124.0 （IP 与子网掩码）</li>
+<li>广播地址：192.168.124.255</li>
+</ul>
+<p>-</p>
+<ul>
+<li>IP：192.168.124.7</li>
+<li>子网掩码：255.255.255.192</li>
+<li>网络地址：192.168.124.0</li>
+<li>广播地址：192.168.124.63<br>&#8195; 255.255.255.192-&gt;11111111,11111111,11111111,11000000<br>&#8195;可划网段 2^2=4 个<br>&#8195;0-63、64-127、128-191、192-255</li>
+<li>所以广播地址：192.168.124.63</li>
+</ul>
+<h3 id="广播通信问题"><a href="#广播通信问题" class="headerlink" title="广播通信问题"></a>广播通信问题</h3><ul>
+<li>主机一 192.168.124.7 ，子网掩码：255.255.255.192</li>
+<li>主机二 192.168.124.100 ，子网掩码：255.255.255.192</li>
+<li>主机一的广播地址：192.168.124.63 主机二广播地址：192.168.124.127</li>
+<li>所以两个主机是不能广播通信的</li>
+</ul>
+<h2 id="案例实操-局域网搜索案例"><a href="#案例实操-局域网搜索案例" class="headerlink" title="案例实操-局域网搜索案例"></a>案例实操-局域网搜索案例</h2><ul>
+<li>UDP 接受消息并回送功能实现</li>
+<li>UDP 局域网广播发送实现</li>
+<li>UDP 局域网回送消息实现</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/14/UDP/" class="archive-article-date">
-  	<time datetime="2019-05-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/14/UDP/">UDP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -178,133 +363,122 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/14/UDP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/14/UDP单播和、广播、多播/" class="archive-article-date">
-  	<time datetime="2019-05-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/14/UDP单播和、广播、多播/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UDP单播、广播、多播</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/14/UDP单播和、广播、多播/">UDP单播、广播、多播</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/14/socket/" class="archive-article-date">
-  	<time datetime="2019-05-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/14/socket/">socket</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/13/information/" class="archive-article-date">
-  	<time datetime="2019-05-13T14:31:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/13/information/">information</a>
-    </h1>
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">information</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -318,8 +492,8 @@
   var yiliaConfig = {
   	mathjax: false,
   	isHome: false,
-  	isPost: false,
-  	isArchive: true,
+  	isPost: true,
+  	isArchive: false,
   	isTag: false,
   	isCategory: false,
   	open_in_new: false,
