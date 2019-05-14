@@ -202,7 +202,8 @@
 <li>0 到 1023 号端口以及 1024 到 49151 号端口都是特殊端口</li>
 <li>49152-65535 属于动态端口范围，没有端口可以被正式的注册占用</li>
 </ul>
-<h4 id="特殊端口"><a href="#特殊端口" class="headerlink" title="特殊端口"></a>特殊端口</h4><table>
+<h4 id="特殊端口"><a href="#特殊端口" class="headerlink" title="特殊端口"></a>特殊端口</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>Service，protocol，or Application</th>
@@ -263,6 +264,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <hr>
 <p><strong>客户端</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.*;</span><br><span class="line">import java.net.Inet4Address;</span><br><span class="line">import java.net.InetSocketAddress;</span><br><span class="line">import java.net.Socket;</span><br><span class="line"></span><br><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args)throws IOException&#123;</span><br><span class="line">        Socket socket = new Socket();</span><br><span class="line">        //超时时间</span><br><span class="line">        socket.setSoTimeout(3000);</span><br><span class="line"></span><br><span class="line">        //连接本地，端口2000；超时时间3000ms</span><br><span class="line">        socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(),2000),3000);</span><br><span class="line">        System.out.println(&quot;已发起服务器连接，并进入后续流程~&quot;);</span><br><span class="line">        System.out.println(&quot;客户端信息&quot;+socket.getLocalAddress()+&quot;  P:&quot;+socket.getLocalPort());</span><br><span class="line">        System.out.println(&quot;服务器端信息&quot;+socket.getLocalAddress()+&quot;  P:&quot;+socket.getLocalPort());</span><br><span class="line"></span><br><span class="line">        try&#123;</span><br><span class="line">            //发送接收数据</span><br><span class="line">            todo(socket);</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            System.out.println(&quot;异常关闭&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        //释放资源</span><br><span class="line">        socket.close();</span><br><span class="line">        System.out.println(&quot;客户端已退出~&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void todo(Socket client) throws IOException&#123;</span><br><span class="line">        //构建键盘输入流</span><br><span class="line">        InputStream in=System.in;</span><br><span class="line">        BufferedReader input=new BufferedReader(new InputStreamReader(in));</span><br><span class="line"></span><br><span class="line">        //得到socket输出流，并转换为打印流</span><br><span class="line">        OutputStream outputStream = client.getOutputStream();</span><br><span class="line">        PrintStream socketPrintStream =new PrintStream(outputStream);</span><br><span class="line"></span><br><span class="line">        //得到Socket输入流,并转换为BufferedReader</span><br><span class="line">        InputStream inputStream = client.getInputStream();</span><br><span class="line">        BufferedReader socketBufferedReader=new BufferedReader(new InputStreamReader(inputStream));</span><br><span class="line"></span><br><span class="line">        boolean flag=true;</span><br><span class="line">        do&#123;</span><br><span class="line">            //键盘读取一行</span><br><span class="line">            String str=input.readLine();</span><br><span class="line">            //发送到服务器</span><br><span class="line">            socketPrintStream.println(str);</span><br><span class="line"></span><br><span class="line">            //从服务器读取一行</span><br><span class="line">            String echo=socketBufferedReader.readLine();</span><br><span class="line">            if(&quot;bye&quot;.equalsIgnoreCase(echo))&#123;</span><br><span class="line">                flag=false;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                System.out.println(echo);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;while(flag);</span><br><span class="line"></span><br><span class="line">        socketPrintStream.close();</span><br><span class="line">        socketBufferedReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -369,11 +371,11 @@
  
 <nav id="article-nav">
   
-    <a href="/2019/05/14/UDP/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/05/14/UDP单播和、广播、多播/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          UDP
+          UDP单播、广播、多播
         
       </div>
     </a>
@@ -559,6 +561,18 @@ MathJax.Hub.Queue(function() {
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">information</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -682,5 +696,22 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"word_count":true,"log":false});</script></body>
+<!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-miku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"word_count":true,"log":false});</script></body>
 </html>
