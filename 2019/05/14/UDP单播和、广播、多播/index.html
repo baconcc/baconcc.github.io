@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="blog">
 <meta property="og:description" content="UDP 单播、广播、多播">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-14T00:03:55.850Z">
+<meta property="og:updated_time" content="2019-05-14T06:11:30.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UDP单播、广播、多播">
 <meta name="twitter:description" content="UDP 单播、广播、多播">
@@ -259,9 +259,18 @@
  
 <nav id="article-nav">
   
+    <a href="/2019/05/14/UDP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          UDP
+        
+      </div>
+    </a>
   
-    <a href="/2019/05/14/UDP/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">UDP</div>
+  
+    <a href="/2019/05/14/socket/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">socket</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -278,6 +287,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP-单播、广播、多播"><span class="toc-number">1.</span> <span class="toc-text">UDP 单播、广播、多播</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>     
@@ -305,6 +327,30 @@
   
 
 <!-- 目录内容 -->
+
+<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+  <span class="btn-bg"></span>
+  <span class="btn-text">文章导航</span>
+</p>
+<div id="toc-article" class="toc-article">
+  <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP-单播、广播、多播"><span class="toc-number">1.</span> <span class="toc-text">UDP 单播、广播、多播</span></a></li></ol>
+</div>
+<script type="text/javascript">
+  function showToc() {
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style", "display:block");
+    show_toc_btn.setAttribute("style", "display:none");
+  }
+  function showBtn() {
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style", "display:none");
+    show_toc_btn.setAttribute("style", "display:block");
+  }
+</script>
 
 <!-- 目录内容结束 -->
 
