@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="blog">
 <meta property="og:description" content="使用 GitHub 借助 GitHub 托管项目代码">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-25T15:23:26.194Z">
+<meta property="og:updated_time" content="2019-05-26T01:34:40.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub">
 <meta name="twitter:description" content="使用 GitHub 借助 GitHub 托管项目代码">
@@ -215,6 +215,11 @@
 </ol>
 </li>
 </ul>
+<h1 id="git-管理远程仓库"><a href="#git-管理远程仓库" class="headerlink" title="git 管理远程仓库"></a>git 管理远程仓库</h1><ul>
+<li>使用远程仓库的目的：备份实现代码共享集中化管理</li>
+<li>提交到远程仓库<code>git push</code></li>
+<li>git 克隆操作：将远程仓库（github 项目）复制到本地<br>代码：<code>git clone 仓库地址</code></li>
+</ul>
   
       <div class="page-reward">
         <a href="javascript:;" class="page-reward-btn tooltip-top">
@@ -351,7 +356,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-GitHub"><span class="toc-number">1.</span> <span class="toc-text">使用 GitHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-安装和使用"><span class="toc-number">2.</span> <span class="toc-text">git 安装和使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-基本工作流程"><span class="toc-number">3.</span> <span class="toc-text">Git 基本工作流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-初始化及仓库创建和操作"><span class="toc-number">4.</span> <span class="toc-text">git 初始化及仓库创建和操作</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-GitHub"><span class="toc-number">1.</span> <span class="toc-text">使用 GitHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-安装和使用"><span class="toc-number">2.</span> <span class="toc-text">git 安装和使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-基本工作流程"><span class="toc-number">3.</span> <span class="toc-text">Git 基本工作流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-初始化及仓库创建和操作"><span class="toc-number">4.</span> <span class="toc-text">git 初始化及仓库创建和操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-管理远程仓库"><span class="toc-number">5.</span> <span class="toc-text">git 管理远程仓库</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -391,7 +396,7 @@
 <div id="toc-article" class="toc-article">
   <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-GitHub"><span class="toc-number">1.</span> <span class="toc-text">使用 GitHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-安装和使用"><span class="toc-number">2.</span> <span class="toc-text">git 安装和使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-基本工作流程"><span class="toc-number">3.</span> <span class="toc-text">Git 基本工作流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-初始化及仓库创建和操作"><span class="toc-number">4.</span> <span class="toc-text">git 初始化及仓库创建和操作</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-GitHub"><span class="toc-number">1.</span> <span class="toc-text">使用 GitHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-安装和使用"><span class="toc-number">2.</span> <span class="toc-text">git 安装和使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-基本工作流程"><span class="toc-number">3.</span> <span class="toc-text">Git 基本工作流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-初始化及仓库创建和操作"><span class="toc-number">4.</span> <span class="toc-text">git 初始化及仓库创建和操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git-管理远程仓库"><span class="toc-number">5.</span> <span class="toc-text">git 管理远程仓库</span></a></li></ol>
 </div>
 <script type="text/javascript">
   function showToc() {
@@ -523,6 +528,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -531,19 +540,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">青涩</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">青涩</a>
               </li>
             
             <div class="clearfix"></div>
