@@ -9,14 +9,14 @@
   <title>2019/5/25 | blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="P1217我的 ac 代码：（本来最后一组测试超时，哭辽，后来看大佬的提示菜全 ac）">
-<meta name="keywords" content="OJ,随笔,C++">
+<meta name="keywords" content="OJ,随笔,C++,埃氏筛法,欧拉筛法,素数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019&#x2F;5&#x2F;25">
 <meta property="og:url" content="http://yoursite.com/2019/05/25/2019-5-25/index.html">
 <meta property="og:site_name" content="blog">
 <meta property="og:description" content="P1217我的 ac 代码：（本来最后一组测试超时，哭辽，后来看大佬的提示菜全 ac）">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-25T13:23:28.351Z">
+<meta property="og:updated_time" content="2019-05-28T15:16:55.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019&#x2F;5&#x2F;25">
 <meta name="twitter:description" content="P1217我的 ac 代码：（本来最后一组测试超时，哭辽，后来看大佬的提示菜全 ac）">
@@ -167,10 +167,18 @@
        <h1 id="P1217"><a href="#P1217" class="headerlink" title="P1217"></a><a href="https://www.luogu.org/problemnew/solution/P1217" target="_blank" rel="noopener">P1217</a></h1><p>我的 ac 代码：（本来最后一组测试超时，哭辽，后来看大佬的提示菜全 ac）</p>
    <a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int res[100000000];</span><br><span class="line">//判断素数</span><br><span class="line">bool prime(int n)&#123;</span><br><span class="line">	if(n%2==0)</span><br><span class="line">	return false;</span><br><span class="line">    int sqrtn=sqrt(n);</span><br><span class="line">	for(int i=2;i&lt;=sqrtn;i++)&#123;</span><br><span class="line">		if(n%i==0)</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line">//没有偶数位的回文质数</span><br><span class="line">bool ws(int k)  //位数</span><br><span class="line">&#123;</span><br><span class="line">    if(k&gt;=10 &amp;&amp; k&lt;100 &amp;&amp; k!=11 || k&gt;=1000 &amp;&amp; k&lt;10000)return false;</span><br><span class="line">    if(k&gt;=100000 &amp;&amp; k&lt;1000000 || k&gt;=10000000 &amp;&amp; k&lt;100000000)return false;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">//两种判断回文数的方法</span><br><span class="line">bool palindromic1(int x)&#123;</span><br><span class="line">    int y=x,num=0;//int y=x,防止x被改变</span><br><span class="line">    while (y!=0)</span><br><span class="line">    &#123;</span><br><span class="line">        num=num*10+y%10;//上一次数字的记录进位再加上下一位数</span><br><span class="line">        y/=10;</span><br><span class="line">    &#125;</span><br><span class="line">    if (num==x) return true;</span><br><span class="line">    else return false;</span><br><span class="line">&#125;</span><br><span class="line">bool palindromic(int n)&#123;</span><br><span class="line">	int k=0,t,temp[10]=&#123;0&#125;;</span><br><span class="line">	while(n)&#123;</span><br><span class="line">		t=n%10;</span><br><span class="line">		temp[k++]=t;</span><br><span class="line">		n/=10;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;k/2;i++)&#123;</span><br><span class="line">		if(temp[i]!=temp[k-1-i])</span><br><span class="line">		&#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int a,b;</span><br><span class="line">	cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	for(int i=a;i&lt;=b;i++)&#123;</span><br><span class="line">		if(ws(i)==false)//先判断位数，因为没有偶数位的回文制数，除了11</span><br><span class="line">		continue;</span><br><span class="line">		else if(palindromic1(i)&amp;&amp;prime(i))</span><br><span class="line">		cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>判断素数还有埃氏筛法<br>首先，将 2 到 n 范围内的所有整数写下来。其中最小的数字 2 是素数。将表中所有 2 的倍数都划去。表中剩余的最小数字是 3，它不能被更小的数整除，所以是素数。再将表中所有 3 的倍数全都划去。依次类推，如果表中剩余的最小数字是 m 时，m 就是素数。然后将表中所有 m 的倍数全部划去。像这样反复操作，就能依次枚举 n 以内的素数。</p>
+<h1 id="埃氏筛法"><a href="#埃氏筛法" class="headerlink" title="埃氏筛法"></a>埃氏筛法</h1><blockquote>
+<p>首先，将 2 到 n 范围内的所有整数写下来。其中最小的数字 2 是素数。将表中所有 2 的倍数都划去。表中剩余的最小数字是 3，它不能被更小的数整除，所以是素数。再将表中所有 3 的倍数全都划去。依次类推，如果表中剩余的最小数字是 m 时，m 就是素数。然后将表中所有 m 的倍数全部划去。像这样反复操作，就能依次枚举 n 以内的素数。<br>j 从 i*i 开始的，是因为 i*(2~ i-1)在 2~i-1 时都已经被筛去</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int mark[100000000];</span><br><span class="line">void prime(int n)</span><br><span class="line">&#123;</span><br><span class="line">	int sqrtn=sqrt(n);</span><br><span class="line">	memset(mark,0,sizeof(mark));</span><br><span class="line">	for(int i=2;i&lt;=sqrtn;i++)&#123;</span><br><span class="line">  		if(mark[i]==0)&#123;</span><br><span class="line">  			for(int j=i*i;j&lt;=n;j+=i)</span><br><span class="line">  			&#123;</span><br><span class="line">  				mark[j]=1;</span><br><span class="line">			&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=2;i&lt;=n;i++)&#123;</span><br><span class="line">    	if(!mark[i])</span><br><span class="line">    	printf(&quot;%d &quot;,i);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">int mark[100000000];</span><br><span class="line">void prime(int n)</span><br><span class="line">&#123;</span><br><span class="line">	int sqrtn=sqrt(n);</span><br><span class="line">	//初始化都是素数</span><br><span class="line">	memset(mark,0,sizeof(mark));</span><br><span class="line">	//0和1不是素数</span><br><span class="line">	mark[0]=mark[1]=1;</span><br><span class="line">	for(int i=2;i&lt;=sqrtn;i++)&#123;</span><br><span class="line">  		if(mark[i]==0)&#123;</span><br><span class="line">			//如果i是素数，就让i的所有倍数都不是素数</span><br><span class="line">  			for(int j=i*i;j&lt;=n;j+=i)</span><br><span class="line">  			&#123;</span><br><span class="line">  				mark[j]=1;</span><br><span class="line">			&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=2;i&lt;=n;i++)&#123;</span><br><span class="line">    	if(!mark[i])</span><br><span class="line">    	printf(&quot;%d &quot;,i);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="欧拉筛法"><a href="#欧拉筛法" class="headerlink" title="欧拉筛法"></a><a href="https://blog.csdn.net/qq_39763472/article/details/82428602" target="_blank" rel="noopener">欧拉筛法</a></h1><blockquote>
+<p>埃氏筛法的缺陷 ：对于一个合数，有可能被筛多次。例如 30 = 2 _ 15 = 3 _ 10 = 5*6……那么如何确保每个合数只被筛选一次呢？我们只要用它的最小质因子来筛选即可，这便是欧拉筛法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int prime[maxn];</span><br><span class="line">int visit[maxn];</span><br><span class="line">void Prime()&#123;</span><br><span class="line">    mem(visit,0);</span><br><span class="line">    mem(prime, 0);</span><br><span class="line">    for (int i = 2;i &lt;= maxn; i++) &#123;</span><br><span class="line">        cout&lt;&lt;&quot; i = &quot;&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">        if (!visit[i]) &#123;</span><br><span class="line">            prime[++prime[0]] = i;      //纪录素数， 这个prime[0] 相当于 cnt，用来计数</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = 1; j &lt;=prime[0] &amp;&amp; i*prime[j] &lt;= maxn; j++) &#123;</span><br><span class="line">//            cout&lt;&lt;&quot;  j = &quot;&lt;&lt;j&lt;&lt;&quot; prime[&quot;&lt;&lt;j&lt;&lt;&quot;]&quot;&lt;&lt;&quot; = &quot;&lt;&lt;prime[j]&lt;&lt;&quot; i*prime[j] = &quot;&lt;&lt;i*prime[j]&lt;&lt;endl;</span><br><span class="line">            visit[i*prime[j]] = 1;</span><br><span class="line">            if (i % prime[j] == 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于 visit[i*prime[j]] = 1 的解释： 这里不是用 i 的倍数来消去合数，而是把 prime 里面纪录的素数，升序来当做要消去合数的最小素因子。</li>
+<li>对于 i%prime[j] == 0 就 break 的解释 ：当 i 是 prime[j]的倍数时，i = kprime[j]，如果继续运算 j+1，i _ prime[j+1] = prime[j] _ k prime[j+1]，这里 prime[j]是最小的素因子，当 i = k _ prime[j+1]时会重复，所以才跳出循环。<br>举个例子 ：i = 8 ，j = 1，prime[j] = 2，如果不跳出循环，prime[j+1] = 3，8 _ 3 = 2 _ 4 _ 3 = 2 * 12，在 i = 12 时会计算。因为欧拉筛法的原理便是通过最小素因子来消除。</li>
+</ul>
 <h1 id="string-与数值-相互转化"><a href="#string-与数值-相互转化" class="headerlink" title="string 与数值 相互转化"></a>string 与数值 相互转化</h1><ol>
 <li>数值转化成字符串</li>
 </ol>
@@ -231,6 +239,18 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">埃氏筛法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">欧拉筛法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">素数</a>
         		</li>
       		
 		</ul>
@@ -330,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#P1217"><span class="toc-number">1.</span> <span class="toc-text">P1217</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string-与数值-相互转化"><span class="toc-number">2.</span> <span class="toc-text">string 与数值 相互转化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#c-string-的一些常见用法"><span class="toc-number">3.</span> <span class="toc-text">c++ string 的一些常见用法</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#P1217"><span class="toc-number">1.</span> <span class="toc-text">P1217</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#埃氏筛法"><span class="toc-number">2.</span> <span class="toc-text">埃氏筛法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#欧拉筛法"><span class="toc-number">3.</span> <span class="toc-text">欧拉筛法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string-与数值-相互转化"><span class="toc-number">4.</span> <span class="toc-text">string 与数值 相互转化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#c-string-的一些常见用法"><span class="toc-number">5.</span> <span class="toc-text">c++ string 的一些常见用法</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -370,7 +390,7 @@
 <div id="toc-article" class="toc-article">
   <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#P1217"><span class="toc-number">1.</span> <span class="toc-text">P1217</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string-与数值-相互转化"><span class="toc-number">2.</span> <span class="toc-text">string 与数值 相互转化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#c-string-的一些常见用法"><span class="toc-number">3.</span> <span class="toc-text">c++ string 的一些常见用法</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#P1217"><span class="toc-number">1.</span> <span class="toc-text">P1217</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#埃氏筛法"><span class="toc-number">2.</span> <span class="toc-text">埃氏筛法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#欧拉筛法"><span class="toc-number">3.</span> <span class="toc-text">欧拉筛法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#string-与数值-相互转化"><span class="toc-number">4.</span> <span class="toc-text">string 与数值 相互转化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#c-string-的一些常见用法"><span class="toc-number">5.</span> <span class="toc-text">c++ string 的一些常见用法</span></a></li></ol>
 </div>
 <script type="text/javascript">
   function showToc() {
@@ -490,6 +510,22 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">埃氏筛法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">欧拉筛法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">素数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
@@ -502,15 +538,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">uml</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rose</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +562,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
