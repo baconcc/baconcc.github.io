@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="blog">
 <meta property="og:description" content="今天有点小忙。实验报告其实不急，但是强迫症有点难受。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-28T15:22:34.307Z">
+<meta property="og:updated_time" content="2019-05-29T00:58:15.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019&#x2F;5&#x2F;28">
 <meta name="twitter:description" content="今天有点小忙。实验报告其实不急，但是强迫症有点难受。">
@@ -166,7 +166,8 @@
     <div class="article-entry" itemprop="articleBody">
        <p>今天有点小忙。<br>实验报告其实不急，但是强迫症有点难受。</p>
 <a id="more"></a>
-<h1 id="P1579-歌德巴赫的猜想"><a href="#P1579-歌德巴赫的猜想" class="headerlink" title="P1579 歌德巴赫的猜想"></a><a href="https://www.luogu.org/problemnew/show/P1579" target="_blank" rel="noopener">P1579 歌德巴赫的猜想</a></h1><p>这个明早再用代码实现把。</p>
+<h1 id="P1579-歌德巴赫的猜想"><a href="#P1579-歌德巴赫的猜想" class="headerlink" title="P1579 歌德巴赫的猜想"></a><a href="https://www.luogu.org/problemnew/show/P1579" target="_blank" rel="noopener">P1579 歌德巴赫的猜想</a></h1><p>这个明早再用代码实现把。<br>由埃氏筛法找出素数之后，想用 dfs 搜索，但是不会！！！！！<br>ac 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int arr[20001],cnt=0;</span><br><span class="line">int mark[20001];</span><br><span class="line">int n;</span><br><span class="line">void prime(int n)</span><br><span class="line">&#123;</span><br><span class="line">	int sqrtn=sqrt(n);</span><br><span class="line">	//初始化都是素数</span><br><span class="line">	memset(mark,0,sizeof(mark));</span><br><span class="line">	//0和1不是素数</span><br><span class="line">	mark[0]=mark[1]=1;</span><br><span class="line">	for(int i=2;i&lt;=sqrtn;i++)&#123;</span><br><span class="line">  		if(mark[i]==0)&#123;</span><br><span class="line">			//如果i是素数，就让i的所有倍数都不是素数</span><br><span class="line">  			for(int j=i*i;j&lt;=n;j+=i)</span><br><span class="line">  			&#123;</span><br><span class="line">  				mark[j]=1;</span><br><span class="line">			&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=2;i&lt;=n;i++)&#123;</span><br><span class="line">    	if(!mark[i])</span><br><span class="line">    	arr[cnt++]=i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void fun()&#123;</span><br><span class="line"></span><br><span class="line">	for(int i=0;i&lt;cnt;i++)&#123;</span><br><span class="line">		for(int j=i;j&lt;cnt;j++)&#123;</span><br><span class="line">			for(int x=j;x&lt;cnt;x++)&#123;</span><br><span class="line">				if(arr[x]+arr[i]+arr[j]==n)</span><br><span class="line">				&#123;</span><br><span class="line">					printf(&quot;%d %d %d\n&quot;,arr[i],arr[j],arr[x]);</span><br><span class="line">					return ;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	prime(n);</span><br><span class="line">	fun();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
       <div class="page-reward">
         <a href="javascript:;" class="page-reward-btn tooltip-top">
@@ -433,10 +434,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
@@ -449,11 +446,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,6 +462,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -473,15 +474,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
