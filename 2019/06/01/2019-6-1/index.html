@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>day day up | 培根培培根培根根根</title>
+  <title>2019/6/1 | 培根培培根培根根根</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2018/5/20p1036  用 dfs 暴力解决">
-<meta name="keywords" content="OJ">
+  <meta name="description" content="p1307精炼：">
+<meta name="keywords" content="OJ,c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="day day up">
-<meta property="og:url" content="http://yoursite.com/2019/05/21/2019-5-21/index.html">
+<meta property="og:title" content="2019&#x2F;6&#x2F;1">
+<meta property="og:url" content="http://yoursite.com/2019/06/01/2019-6-1/index.html">
 <meta property="og:site_name" content="培根培培根培根根根">
-<meta property="og:description" content="2018/5/20p1036  用 dfs 暴力解决">
+<meta property="og:description" content="p1307精炼：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-24T13:58:35.674Z">
+<meta property="og:updated_time" content="2019-06-01T12:00:07.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="day day up">
-<meta name="twitter:description" content="2018/5/20p1036  用 dfs 暴力解决">
+<meta name="twitter:title" content="2019&#x2F;6&#x2F;1">
+<meta name="twitter:description" content="p1307精炼：">
   
     <link rel="alternative" href="/atom.xml" title="培根培培根培根根根" type="application/atom+xml">
   
@@ -142,18 +142,18 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2019-5-21" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2019-6-1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <header class="article-header">
       
   
     <h1 class="article-title" itemprop="name">
-      day day up
+      2019/6/1
     </h1>
   
-  <a href="/2019/05/21/2019-5-21/" class="archive-article-date">
-  	<time datetime="2019-05-21T02:26:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-21</time>
+  <a href="/2019/06/01/2019-6-1/" class="archive-article-date">
+  	<time datetime="2019-06-01T04:28:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-01</time>
 </a>
 
       <!-- 开始添加字数统计-->
@@ -164,17 +164,28 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-       <h1 id="2018-5-20"><a href="#2018-5-20" class="headerlink" title="2018/5/20"></a>2018/5/20</h1><p><a href="https://www.luogu.org/problemnew/show/P1036" target="_blank" rel="noopener">p1036</a></p>
-<blockquote>
-<p>用 dfs 暴力解决</p>
+       <h1 id="p1307"><a href="#p1307" class="headerlink" title="p1307"></a><a href="https://www.luogu.org/problemnew/show/P1307" target="_blank" rel="noopener">p1307</a></h1><h2 id="精炼："><a href="#精炼：" class="headerlink" title="精炼："></a>精炼：</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">int n,k;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	while(n)&#123;</span><br><span class="line">		k=k*10+n%10;</span><br><span class="line">		n/=10;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;k&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="我的代码：又臭又长"><a href="#我的代码：又臭又长" class="headerlink" title="我的代码：又臭又长"></a>我的代码：<del>又臭又长</del></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">int main()&#123;</span><br><span class="line">	ll n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	bool pnum=true;</span><br><span class="line">	if(n&lt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		pnum=false;</span><br><span class="line">		n*=(-1);</span><br><span class="line">	&#125;</span><br><span class="line">	bool first=true;</span><br><span class="line">	if(!pnum)</span><br><span class="line">	cout&lt;&lt;&quot;-&quot;;</span><br><span class="line">	if(n==0)</span><br><span class="line">	cout&lt;&lt;0;</span><br><span class="line">	while(n)&#123;</span><br><span class="line">		ll t=n%10;</span><br><span class="line">		n/=10;</span><br><span class="line">		if(t==0)&#123;</span><br><span class="line">			if(first)</span><br><span class="line">			continue;</span><br><span class="line">			else&#123;</span><br><span class="line">				cout&lt;&lt;t;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			cout&lt;&lt;t;</span><br><span class="line">			first=false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="关于-memset-函数"><a href="#关于-memset-函数" class="headerlink" title="关于 memset()函数"></a>关于 memset()函数</h1><ul>
+<li>不能给二维数组填充 因为二维数组行与行之间不一定是连续的</li>
+<li>是按照字节为单位填充的 64bit :char 1B ,short 2B , int 4B,long 8B, float 4B,double 8B</li>
+</ul>
+<h1 id="关于-全局和局部-整形数组问题"><a href="#关于-全局和局部-整形数组问题" class="headerlink" title="关于 全局和局部 整形数组问题"></a>关于 全局和局部 整形数组问题</h1><ul>
+<li>全局数组 默认为零。如果声明的长度与赋值长度不相等，则有，声明的长度&gt;赋值长度，后面用 0 补足</li>
+<li>局部数组：没有默认值，如果声明的时候不定义，则会出现随机数（undefined）；如果声明的长度与赋值长度不相等，则有，声明的长度&gt;赋值长度，后面用 0 补足。</li>
+<li>全局变量也默认为零</li>
+</ul>
+<h1 id="p1003"><a href="#p1003" class="headerlink" title="p1003"></a><a href="https://www.luogu.org/problemnew/show/P1003" target="_blank" rel="noopener">p1003</a></h1><p>一开始我想用数组模拟 编译器也不支持 10w*10w 的数组<br>这个就是一个下标范围的确定。<br>最后 ac 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int a,b,g,k,x,y,n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	int ** arr=new int* [n];</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	arr[i]=new int [4];</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	for(int ii=0;ii&lt;4;ii++)</span><br><span class="line">	cin&gt;&gt;arr[i][ii];</span><br><span class="line">	cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">	int res=-1;</span><br><span class="line">	for(int i=n-1;i&gt;=0;i--)&#123;</span><br><span class="line">		int r_x=arr[i][0]+arr[i][2];</span><br><span class="line">		int r_y=arr[i][1]+arr[i][3];</span><br><span class="line">		if(x&gt;=arr[i][0]&amp;&amp;x&lt;=r_x&amp;&amp;y&gt;=arr[i][1]&amp;y&lt;=r_y)</span><br><span class="line">		&#123;</span><br><span class="line">			res=(i+1);break;</span><br><span class="line">		 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="主要二维数组的建立："><a href="#主要二维数组的建立：" class="headerlink" title="主要二维数组的建立："></a>主要二维数组的建立：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int ** a=new int* [n];</span><br><span class="line">for(int i=0;i&lt;n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	a[i]=new int[k]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="p1067"><a href="#p1067" class="headerlink" title="p1067"></a><a href="https://www.luogu.org/problemnew/show/P1067" target="_blank" rel="noopener">p1067</a></h1><blockquote>
+<p>先把符号添上 因为整数打印不带符号 符输带符号。<br>最后一项 直接输出 不用正负<br>倒数第二项 指数 1 的时候也比较特殊<br>其余项 按照同一格式输出</p>
 </blockquote>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,k,total,sum,i;</span><br><span class="line">int a[10001];</span><br><span class="line">bool prime(int x)&#123;</span><br><span class="line">	for(i=2;i&lt;=sqrt(x);i++)&#123;</span><br><span class="line">		if(x%i==0)</span><br><span class="line">			return false;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line">void dfs(int step,int sum,int cnt)&#123;</span><br><span class="line">	if(step==n+1||cnt==k)&#123;</span><br><span class="line">		if(prime(sum)&amp;&amp;cnt==k)&#123;</span><br><span class="line">			total++;</span><br><span class="line">		&#125;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(step+1,sum+a[step],cnt+1);</span><br><span class="line">	dfs(step+1,sum,cnt);</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	for(i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(1,0,0);</span><br><span class="line">	cout&lt;&lt;total&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>递归写法</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,k,a[10001];</span><br><span class="line">bool isprime(int x)&#123;</span><br><span class="line">	int t=sqrt(x);</span><br><span class="line">	for(int i=2;i&lt;=t;i++)&#123;</span><br><span class="line">		if(x%i==0)</span><br><span class="line">			return false;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line">int recursion(int choose_left_num,int already_sum,int start,int end)&#123;</span><br><span class="line">	if(choose_left_num==0) return isprime(already_sum);</span><br><span class="line">	int sum=0;</span><br><span class="line">	for(int i=start;i&lt;=end;i++)&#123;</span><br><span class="line">		sum+=recursion(choose_left_num-1,already_sum+a[i],i+1,end);</span><br><span class="line">	&#125;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	cin&gt;&gt;a[i];</span><br><span class="line">	cout&lt;&lt;recursion(k,0,0,n-1);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
+<p><del>就不贴 算了还是 学习一下</del></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="include"><a href="#include" class="headerlink" title="include"></a>include<bits stdc++.h></bits></h1><p>using namespace std;<br>int main(){<br>int n,a;<br>cin&gt;&gt;n;<br>for(int i=n;i&gt;=0;i—){<br>cin&gt;&gt;a;<br>if(a){ 判 0 系数<br>if(i!=n&amp;&amp;a&gt;0)cout&lt;&lt;”+”;<br>//根据正负、是否为最高此项决定加号<br>if(abs(a)&gt;1||i==0)cout&lt;<a; 1 输出系数（系数不为正负 或指数为 0） if(a="=-1&&i)cout<<" -";" -1 系数特判，常数项已特判 if(i>1)cout&lt;&lt;”x^”&lt;&lt;i;<br>// 二次及以上输出指数<br>if(i==1)cout&lt;&lt;”x”; 一次项<br>}<br>}<br>}</a;></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	int t;</span><br><span class="line">	bool first=true;</span><br><span class="line">	for(int i=n;i&gt;=0;i--)&#123;</span><br><span class="line">		cin&gt;&gt;t;</span><br><span class="line">		if(t)&#123;</span><br><span class="line">			//补加号</span><br><span class="line">			if(i!=n&amp;&amp;t&gt;0) cout&lt;&lt;&quot;+&quot;;</span><br><span class="line">			if(i==0) cout&lt;&lt;t&lt;&lt;endl;</span><br><span class="line">			else if(i==1)&#123;</span><br><span class="line">				if(abs(t)!=1)</span><br><span class="line">				cout&lt;&lt;t&lt;&lt;&quot;x&quot;;</span><br><span class="line">				else if(t==1)</span><br><span class="line">				cout&lt;&lt;&quot;x&quot;;</span><br><span class="line">				else if(t==-1)</span><br><span class="line">				cout&lt;&lt;&quot;-x&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				if(abs(t)!=1)</span><br><span class="line">				cout&lt;&lt;t&lt;&lt;&quot;x^&quot;&lt;&lt;i;</span><br><span class="line">				else if(t==1)</span><br><span class="line">				cout&lt;&lt;&quot;x^&quot;&lt;&lt;i;</span><br><span class="line">				else if(t==-1)</span><br><span class="line">				cout&lt;&lt;&quot;-x^&quot;&lt;&lt;i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
       <div class="page-reward">
         <a href="javascript:;" class="page-reward-btn tooltip-top">
@@ -212,6 +223,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OJ</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c++</a>
         		</li>
       		
 		</ul>
@@ -262,7 +277,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/21/2019-5-21/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/01/2019-6-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,18 +290,9 @@
  
 <nav id="article-nav">
   
-    <a href="/2019/05/23/青涩的回忆/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          青涩的回忆
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/18/It-is-impossible-to-be-a-master-but-to-read/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">It is impossible to be a master but to read</div>
+    <a href="/2019/05/31/2019-5-31/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2019/5/31</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -311,7 +317,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-5-20"><span class="toc-number">1.</span> <span class="toc-text">2018/5/20</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#p1307"><span class="toc-number">1.</span> <span class="toc-text">p1307</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#精炼："><span class="toc-number">1.1.</span> <span class="toc-text">精炼：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我的代码：又臭又长"><span class="toc-number">1.2.</span> <span class="toc-text">我的代码：又臭又长</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-memset-函数"><span class="toc-number">2.</span> <span class="toc-text">关于 memset()函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-全局和局部-整形数组问题"><span class="toc-number">3.</span> <span class="toc-text">关于 全局和局部 整形数组问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#p1003"><span class="toc-number">4.</span> <span class="toc-text">p1003</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要二维数组的建立："><span class="toc-number">4.1.</span> <span class="toc-text">主要二维数组的建立：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#p1067"><span class="toc-number">5.</span> <span class="toc-text">p1067</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#include"><span class="toc-number">6.</span> <span class="toc-text">include</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -351,7 +357,7 @@
 <div id="toc-article" class="toc-article">
   <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-5-20"><span class="toc-number">1.</span> <span class="toc-text">2018/5/20</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#p1307"><span class="toc-number">1.</span> <span class="toc-text">p1307</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#精炼："><span class="toc-number">1.1.</span> <span class="toc-text">精炼：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我的代码：又臭又长"><span class="toc-number">1.2.</span> <span class="toc-text">我的代码：又臭又长</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-memset-函数"><span class="toc-number">2.</span> <span class="toc-text">关于 memset()函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于-全局和局部-整形数组问题"><span class="toc-number">3.</span> <span class="toc-text">关于 全局和局部 整形数组问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#p1003"><span class="toc-number">4.</span> <span class="toc-text">p1003</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要二维数组的建立："><span class="toc-number">4.1.</span> <span class="toc-text">主要二维数组的建立：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#p1067"><span class="toc-number">5.</span> <span class="toc-text">p1067</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#include"><span class="toc-number">6.</span> <span class="toc-text">include</span></a></li></ol>
 </div>
 <script type="text/javascript">
   function showToc() {
