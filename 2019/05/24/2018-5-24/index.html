@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="培根培培根培根根根">
 <meta property="og:description" content="P1149自己的思路想的使用三重循环+STL 的 set（自动去重和排序），最后输出 set.size() 结果发现太慢了，而且中间程序卡住。。。。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-24T14:57:48.615Z">
+<meta property="og:updated_time" content="2019-06-03T13:09:50.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018&#x2F;5&#x2F;24">
 <meta name="twitter:description" content="P1149自己的思路想的使用三重循环+STL 的 set（自动去重和排序），最后输出 set.size() 结果发现太慢了，而且中间程序卡住。。。。">
@@ -170,8 +170,8 @@
 <blockquote>
 <p>这样看就和 easy，很自然的解决了 ijk 等式的组合重复问题<br>如果题目中注意 2 视为相同等式的话，二重内循环改一下 j 的初始化 j=i</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int a[2001]=&#123;6&#125;,i,j,n;</span><br><span class="line">int num[] = &#123; 6,2,5,5,4,5,6,3,7,6 &#125;;</span><br><span class="line">int sum=0;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	for(i=0;i&lt;2001;i++)&#123;</span><br><span class="line">		j=i;</span><br><span class="line">		while(j)&#123;</span><br><span class="line">			a[i]+=num[j%10];</span><br><span class="line">			j/=10;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(i=0;i&lt;=1000;i++)&#123;</span><br><span class="line">		for(j=0;j&lt;=1000;j++)</span><br><span class="line">		if(a[i]+a[j]+a[i+j]+4==n)</span><br><span class="line">		sum++;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="温习一下结构体"><a href="#温习一下结构体" class="headerlink" title="温习一下结构体"></a>温习一下结构体</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;stdio.h&gt;</span><br><span class="line">struct AGE</span><br><span class="line">&#123;</span><br><span class="line">    int year;</span><br><span class="line">    int month;</span><br><span class="line">    int day;</span><br><span class="line">&#125;;</span><br><span class="line">struct STUDENT</span><br><span class="line">&#123;</span><br><span class="line">    char name[20];</span><br><span class="line">    int num;</span><br><span class="line">    struct AGE birthday;  //就有点类似于C++中的封装了</span><br><span class="line">    float score;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    struct STUDENT student1 = &#123;&quot;小明&quot;, 1207041, &#123;1989, 3, 29&#125;, 100&#125;;</span><br><span class="line">    printf(&quot;name : %s\n&quot;, student1.name);</span><br><span class="line">    printf(&quot;birthday : %d-%d-%d\n&quot;, student1.birthday.year, student1.birthday.month, student1.birthday.day);</span><br><span class="line">    printf(&quot;num : %d\n&quot;, student1.num);</span><br><span class="line">    printf(&quot;score : %.1f\n&quot;, student1.score);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2001</span>]=&#123;<span class="number">6</span>&#125;,i,j,n;</span><br><span class="line"><span class="keyword">int</span> num[] = &#123; <span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">6</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">2001</span>;i++)&#123;</span><br><span class="line">		j=i;</span><br><span class="line">		<span class="keyword">while</span>(j)&#123;</span><br><span class="line">			a[i]+=num[j%<span class="number">10</span>];</span><br><span class="line">			j/=<span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">1000</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=<span class="number">1000</span>;j++)</span><br><span class="line">		<span class="keyword">if</span>(a[i]+a[j]+a[i+j]+<span class="number">4</span>==n)</span><br><span class="line">		sum++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;sum&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="温习一下结构体"><a href="#温习一下结构体" class="headerlink" title="温习一下结构体"></a>温习一下结构体</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AGE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="keyword">int</span> month;</span><br><span class="line">    <span class="keyword">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">STUDENT</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">AGE</span> <span class="title">birthday</span>;</span>  <span class="comment">//就有点类似于C++中的封装了</span></span><br><span class="line">    <span class="keyword">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">STUDENT</span> <span class="title">student1</span> = &#123;</span><span class="string">"小明"</span>, <span class="number">1207041</span>, &#123;<span class="number">1989</span>, <span class="number">3</span>, <span class="number">29</span>&#125;, <span class="number">100</span>&#125;;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"name : %s\n"</span>, student1.name);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"birthday : %d-%d-%d\n"</span>, student1.birthday.year, student1.birthday.month, student1.birthday.day);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"num : %d\n"</span>, student1.num);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"score : %.1f\n"</span>, student1.score);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="关于-c-STL-容器的使用介绍"><a href="#关于-c-STL-容器的使用介绍" class="headerlink" title="关于 c++STL 容器的使用介绍"></a><a href="https://www.cnblogs.com/drq1/p/9699370.html" target="_blank" rel="noopener">关于 c++STL 容器的使用介绍</a></h1><p>注：</p>
 <ul>
 <li>find()函数，如果未找到元素就返回，集合的 set.end()</li>
@@ -487,11 +487,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,27 +507,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">uml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rose</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">科学数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,6 +532,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">青涩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">uml</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rose</a>
               </li>
              
               <li class="article-tag-list-item">

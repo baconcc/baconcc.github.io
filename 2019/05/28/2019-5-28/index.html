@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="培根培培根培根根根">
 <meta property="og:description" content="今天有点小忙。实验报告其实不急，但是强迫症有点难受。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T00:58:15.542Z">
+<meta property="og:updated_time" content="2019-06-03T13:10:48.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019&#x2F;5&#x2F;28">
 <meta name="twitter:description" content="今天有点小忙。实验报告其实不急，但是强迫症有点难受。">
@@ -167,7 +167,7 @@
        <p>今天有点小忙。<br>实验报告其实不急，但是强迫症有点难受。</p>
 <a id="more"></a>
 <h1 id="P1579-歌德巴赫的猜想"><a href="#P1579-歌德巴赫的猜想" class="headerlink" title="P1579 歌德巴赫的猜想"></a><a href="https://www.luogu.org/problemnew/show/P1579" target="_blank" rel="noopener">P1579 歌德巴赫的猜想</a></h1><p>这个明早再用代码实现把。<br>由埃氏筛法找出素数之后，想用 dfs 搜索，但是不会！！！！！<br>ac 代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int arr[20001],cnt=0;</span><br><span class="line">int mark[20001];</span><br><span class="line">int n;</span><br><span class="line">void prime(int n)</span><br><span class="line">&#123;</span><br><span class="line">	int sqrtn=sqrt(n);</span><br><span class="line">	//初始化都是素数</span><br><span class="line">	memset(mark,0,sizeof(mark));</span><br><span class="line">	//0和1不是素数</span><br><span class="line">	mark[0]=mark[1]=1;</span><br><span class="line">	for(int i=2;i&lt;=sqrtn;i++)&#123;</span><br><span class="line">  		if(mark[i]==0)&#123;</span><br><span class="line">			//如果i是素数，就让i的所有倍数都不是素数</span><br><span class="line">  			for(int j=i*i;j&lt;=n;j+=i)</span><br><span class="line">  			&#123;</span><br><span class="line">  				mark[j]=1;</span><br><span class="line">			&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=2;i&lt;=n;i++)&#123;</span><br><span class="line">    	if(!mark[i])</span><br><span class="line">    	arr[cnt++]=i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void fun()&#123;</span><br><span class="line"></span><br><span class="line">	for(int i=0;i&lt;cnt;i++)&#123;</span><br><span class="line">		for(int j=i;j&lt;cnt;j++)&#123;</span><br><span class="line">			for(int x=j;x&lt;cnt;x++)&#123;</span><br><span class="line">				if(arr[x]+arr[i]+arr[j]==n)</span><br><span class="line">				&#123;</span><br><span class="line">					printf(&quot;%d %d %d\n&quot;,arr[i],arr[j],arr[x]);</span><br><span class="line">					return ;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	prime(n);</span><br><span class="line">	fun();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">20001</span>],cnt=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> mark[<span class="number">20001</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prime</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sqrtn=<span class="built_in">sqrt</span>(n);</span><br><span class="line">	<span class="comment">//初始化都是素数</span></span><br><span class="line">	<span class="built_in">memset</span>(mark,<span class="number">0</span>,<span class="keyword">sizeof</span>(mark));</span><br><span class="line">	<span class="comment">//0和1不是素数</span></span><br><span class="line">	mark[<span class="number">0</span>]=mark[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=sqrtn;i++)&#123;</span><br><span class="line">  		<span class="keyword">if</span>(mark[i]==<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="comment">//如果i是素数，就让i的所有倍数都不是素数</span></span><br><span class="line">  			<span class="keyword">for</span>(<span class="keyword">int</span> j=i*i;j&lt;=n;j+=i)</span><br><span class="line">  			&#123;</span><br><span class="line">  				mark[j]=<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    	<span class="keyword">if</span>(!mark[i])</span><br><span class="line">    	arr[cnt++]=i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;cnt;j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> x=j;x&lt;cnt;x++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(arr[x]+arr[i]+arr[j]==n)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>,arr[i],arr[j],arr[x]);</span><br><span class="line">					<span class="keyword">return</span> ;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	prime(n);</span><br><span class="line">	fun();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
       <div class="page-reward">
         <a href="javascript:;" class="page-reward-btn tooltip-top">
@@ -443,11 +443,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,27 +463,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">uml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rose</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">科学数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,6 +488,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">青涩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">uml</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rose</a>
               </li>
              
               <li class="article-tag-list-item">
