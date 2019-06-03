@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>2019/6/2 | 培根培培根培根根根</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="p1540简单的模拟：123456789101112131415161718192021222324252627282930#include&amp;lt;iostream&amp;gt;#include&amp;lt;cstring&amp;gt;using namespace std;int m,n;int arr[1002];int main()&amp;#123;	for(int i=0;i&amp;lt;=1000;i++)	arr[">
+  <meta name="description" content="p1540简单的模拟：">
 <meta name="keywords" content="OJ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019&#x2F;6&#x2F;2">
 <meta property="og:url" content="http://yoursite.com/2019/06/02/2019-6-2/index.html">
 <meta property="og:site_name" content="培根培培根培根根根">
-<meta property="og:description" content="p1540简单的模拟：123456789101112131415161718192021222324252627282930#include&amp;lt;iostream&amp;gt;#include&amp;lt;cstring&amp;gt;using namespace std;int m,n;int arr[1002];int main()&amp;#123;	for(int i=0;i&amp;lt;=1000;i++)	arr[">
+<meta property="og:description" content="p1540简单的模拟：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-03T13:07:51.370Z">
+<meta property="og:updated_time" content="2019-06-03T13:40:03.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019&#x2F;6&#x2F;2">
-<meta name="twitter:description" content="p1540简单的模拟：123456789101112131415161718192021222324252627282930#include&amp;lt;iostream&amp;gt;#include&amp;lt;cstring&amp;gt;using namespace std;int m,n;int arr[1002];int main()&amp;#123;	for(int i=0;i&amp;lt;=1000;i++)	arr[">
+<meta name="twitter:description" content="p1540简单的模拟：">
   
     <link rel="alternative" href="/atom.xml" title="培根培培根培根根根" type="application/atom+xml">
   
@@ -164,7 +164,8 @@
     </header>
     
     <div class="article-entry" itemprop="articleBody">
-       <h1 id="p1540"><a href="#p1540" class="headerlink" title="p1540"></a><a href="https://www.luogu.org/problemnew/show/P1540" target="_blank" rel="noopener">p1540</a></h1><h2 id="简单的模拟："><a href="#简单的模拟：" class="headerlink" title="简单的模拟："></a>简单的模拟：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> m,n;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">1002</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">1000</span>;i++)</span><br><span class="line">	arr[i]=<span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> l=<span class="number">0</span>,t,k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">		<span class="keyword">bool</span> find=<span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">int</span> len=k-l;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;k;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i]==t)</span><br><span class="line">			&#123;</span><br><span class="line">				find=<span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!find)&#123;</span><br><span class="line">			arr[k++]=t;</span><br><span class="line">			<span class="keyword">if</span>(len==m)</span><br><span class="line">			l++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;k&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+       <h1 id="p1540"><a href="#p1540" class="headerlink" title="p1540"></a><a href="https://www.luogu.org/problemnew/show/P1540" target="_blank" rel="noopener">p1540</a></h1><h2 id="简单的模拟："><a href="#简单的模拟：" class="headerlink" title="简单的模拟："></a>简单的模拟：</h2><a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> m,n;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">1002</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">1000</span>;i++)</span><br><span class="line">	arr[i]=<span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> l=<span class="number">0</span>,t,k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">		<span class="keyword">bool</span> find=<span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">int</span> len=k-l;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;k;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i]==t)</span><br><span class="line">			&#123;</span><br><span class="line">				find=<span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!find)&#123;</span><br><span class="line">			arr[k++]=t;</span><br><span class="line">			<span class="keyword">if</span>(len==m)</span><br><span class="line">			l++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;k&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="用容器来做："><a href="#用容器来做：" class="headerlink" title="用容器来做："></a>用容器来做：</h2><h3 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h3><blockquote>
 <p>注意 queue 中 是没有 find 的函数的！</p>
 </blockquote>
@@ -512,6 +513,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
@@ -520,15 +529,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">青涩</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,22 +666,5 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<!-- <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
